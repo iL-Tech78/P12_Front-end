@@ -152,8 +152,8 @@ npm run build
 
 ###### ### 9. Déploiement
 
-L’application est déployée sur :
-https://hrnet-react.netlify.app
+L’application est déployée sur Netlify :
+https://projet-hrnet.netlify.app/
 
 ###### #### 10. Tests
 

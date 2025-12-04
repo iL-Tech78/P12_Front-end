@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import "./Modal.css";
 /**
- * react-hrnet-modal
- * -------------------------
- * Un composant modal React léger inspiré du plugin jQuery original
+ * react-hrnet-modal (version utilisée dans l'application HRnet)
+ * ------------------------------------------------------
+ * Composant modal React léger inspiré du plugin jQuery original
  * « kylefox/jquery-modal », utilisé dans l'application HRnet.
  *
  * Ce composant remplace l'ancien modal jQuery dans HRnet et offre :
  * - Une superposition sombre sur toute la page
  * - Une boîte de dialogue blanche centrée
  * - Un bouton de fermeture dans le coin supérieur droit
- * - Fermeture par clic sur la superposition, touche Échap ou bouton de fermeture
- * - Empêche le défilement de l'arrière-plan lorsqu'il est ouvert
+ * - Fermeture lorsque l'on clique sur la superposition, que l'on appuie sur la touche Échap ou que l'on clique sur le bouton de fermeture
  *
  * Props :
  * ---------
@@ -27,36 +26,22 @@ import "./Modal.css";
  *
  * @param {React.ReactNode} children
  *    Contenu affiché à l'intérieur du corps du modal.
- *
- * Remarques :
- * ---------
- * Il s'agit du remplacement officiel React pour le plugin modal jQuery
- * utilisé dans l'application jQuery HRnet d'origine.
- * Il n'inclut *intentionnellement* pas les fonctionnalités spécifiques à jQuery telles que :
- * - Chargement AJAX...
- *
- * L'objectif est de fournir un modal propre, simple et moderne pour HRnet.
  */
 export default function Modal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null;
 
-  // Gestion de la touche Escape + blocage du scroll arrière-plan
+  // Gestion de la touche Escape (on ne touche plus au scroll du body)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
     };
 
     document.addEventListener("keydown", handleKeyDown);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = previousOverflow;
     };
   }, [onClose]);
 
-  // Fermer en cliquant sur l’overlay
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
