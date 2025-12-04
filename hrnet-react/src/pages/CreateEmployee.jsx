@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { addEmployee } from "../features/employees/employeesSlice";
 import { states } from "../data/states";
 import { departments } from "../data/departments";
-import Modal from "../components/Modal";
+import Modal from "react-hrnet-modal";
 import Dropdown from "../components/Dropdown";
 import DatePicker from "../components/DatePicker";
 import "./CreateEmployee.css";
