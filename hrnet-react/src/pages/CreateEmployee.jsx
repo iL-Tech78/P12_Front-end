@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { addEmployee } from "../features/employees/employeesSlice";
 import { states } from "../data/states";
 import { departments } from "../data/departments";
-import { Link } from "react-router-dom";
+import Modal from "../components/Modal";
+import Dropdown from "../components/Dropdown";
+import DatePicker from "../components/DatePicker";
+import "./CreateEmployee.css";
 
 export default function CreateEmployee() {
   const dispatch = useDispatch();
+
+  // Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Form state
   const [firstName, setFirstName] = useState("");
@@ -37,94 +44,124 @@ export default function CreateEmployee() {
     };
 
     dispatch(addEmployee(newEmployee));
-
-    // Ici, plus tard, tu ouvriras ta MODAL React
-    alert("Employee Created! (modal à venir)");
+    setIsModalOpen(true);
   };
 
   return (
-    <main style={{ maxWidth: "500px", margin: "auto" }}>
-        <h1>HRnet</h1>
-        <p> <Link to="/employees">View Current Employees</Link></p>
-        <h2>Create Employee</h2>
+    <main className="create-page">
+      <header className="create-header">
+        <h1 className="create-title">HRnet</h1>
+        <Link to="/employees" className="create-link">
+          View Current Employees
+        </Link>
+      </header>
 
-        <form onSubmit={handleSubmit}>
+      <section className="create-card">
+        <h2 className="create-card-title">Create Employee</h2>
 
-        <label>First Name</label>
-        <input 
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-        />
+        <form className="create-form" onSubmit={handleSubmit}>
+          <div className="create-grid">
+            <div className="create-column">
+              <div className="form-group">
+                <label>First Name</label>
+                <input
+                  className="text-input"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
 
-        <label>Last Name</label>
-        <input 
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-        />
+              <div className="form-group">
+                <label>Last Name</label>
+                <input
+                  className="text-input"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
 
-        <label>Date of Birth</label>
-        <input 
-            type="date"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-        />
+              <div className="form-group">
+                <DatePicker
+                  label="Date of Birth"
+                  name="dateOfBirth"
+                  value={dateOfBirth}
+                  onChange={setDateOfBirth}
+                />
+              </div>
 
-        <label>Start Date</label>
-        <input 
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-        />
+              <div className="form-group">
+                <DatePicker
+                  label="Start Date"
+                  name="startDate"
+                  value={startDate}
+                  onChange={setStartDate}
+                />
+              </div>
+            </div>
 
-        <fieldset>
-            <legend>Address</legend>
+            <div className="create-column">
+              <fieldset className="address-fieldset">
+                <legend>Address</legend>
 
-            <label>Street</label>
-            <input 
-            value={street}
-            onChange={(e) => setStreet(e.target.value)}
+                <div className="form-group">
+                  <label>Street</label>
+                  <input
+                    className="text-input"
+                    value={street}
+                    onChange={(e) => setStreet(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>City</label>
+                  <input
+                    className="text-input"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <Dropdown
+                    label="State"
+                    options={states.map((s) => s.name)}
+                    value={state}
+                    onChange={setStateValue}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Zip Code</label>
+                  <input
+                    className="text-input"
+                    value={zipCode}
+                    onChange={(e) => setZipCode(e.target.value)}
+                  />
+                </div>
+              </fieldset>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <Dropdown
+              label="Department"
+              options={departments}
+              value={department}
+              onChange={setDepartment}
             />
+          </div>
 
-            <label>City</label>
-            <input 
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            />
-
-            <label>State</label>
-            <select 
-            value={state}
-            onChange={(e) => setStateValue(e.target.value)}
-            >
-            {states.map((s) => (
-                <option key={s.abbreviation} value={s.name}>
-                {s.name}
-                </option>
-            ))}
-            </select>
-
-            <label>Zip Code</label>
-            <input 
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-            />
-        </fieldset>
-
-        <label>Department</label>
-        <select 
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-        >
-            {departments.map((d) => (
-            <option key={d} value={d}>
-                {d}
-            </option>
-            ))}
-        </select>
-
-        <button type="submit" style={{ marginTop: "20px" }}>Save</button>
-
+          <div className="create-actions">
+            <button type="submit" className="create-submit">
+              Save
+            </button>
+          </div>
         </form>
+      </section>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        Employee Created!
+      </Modal>
     </main>
   );
 }

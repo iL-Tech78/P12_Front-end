@@ -1,4 +1,3 @@
-// src/App.jsx
 import { Routes, Route, Link } from 'react-router-dom'
 import CreateEmployee from './pages/CreateEmployee'
 import EmployeeList from './pages/EmployeeList'

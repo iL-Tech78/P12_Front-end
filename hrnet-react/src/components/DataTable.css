@@ -1,0 +1,65 @@
+.datatable-container {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+  
+.datatable-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+  
+.datatable-show select {
+  padding: 2px;
+}
+  
+.datatable-search input {
+  padding: 2px 4px;
+}
+
+.datatable-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.datatable-table th {
+  padding: 8px;
+  text-align: left;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  font-weight: 600;
+}
+
+.datatable-table td {
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.datatable-empty {
+  text-align: center;
+  padding: 1rem;
+  font-style: italic;
+  color: #777;
+}
+
+.datatable-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.datatable-pagination button {
+  padding: 4px 8px;
+  margin: 0 4px;
+}
+
+.datatable-pagination span {
+  padding: 0 8px;
+  font-weight: bold;
+}

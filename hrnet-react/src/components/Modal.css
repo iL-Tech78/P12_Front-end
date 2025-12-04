@@ -1,0 +1,47 @@
+.hrnet-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.hrnet-modal {
+    position: relative;
+    background: #ffffff;
+    padding: 1rem 1.5rem;
+    min-width: 320px;
+    max-width: 480px;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.hrnet-modal__title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.hrnet-modal__body {
+    font-size: 0.95rem;
+}
+
+.hrnet-modal__close-button {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    border: none;
+    background: #000;
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  

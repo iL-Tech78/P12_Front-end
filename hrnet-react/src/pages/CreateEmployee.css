@@ -1,0 +1,135 @@
+.create-page {
+  min-height: 100vh;
+  padding: 40px 16px;
+  background: #f5f5f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.create-title {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 32px;
+  margin: 0;
+}
+
+.create-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #3b68c5;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.create-link:hover {
+  text-decoration: underline;
+}
+
+.create-card {
+  width: 100%;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  padding: 24px 28px 28px;
+}
+
+.create-card-title {
+  text-align: center;
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.create-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.create-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.text-input {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #bfbfbf;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #3b68c5;
+  box-shadow: 0 0 0 1px rgba(59, 104, 197, 0.2);
+}
+
+.address-fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 14px 14px;
+}
+
+.address-fieldset legend {
+  padding: 0 6px;
+  font-size: 14px;
+}
+
+.create-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.create-submit {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  background-color: #3b68c5;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+.create-submit:hover {
+  background-color: #2f55a0;
+}
+
+.create-submit:active {
+  transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .create-card {
+    padding: 20px 16px 22px;
+  }
+
+  .create-grid {
+    grid-template-columns: 1fr;
+  }
+}
