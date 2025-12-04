@@ -1,3 +1,5 @@
+import React, { useEffect } from "react";
+import "./Modal.css";
 /**
  * react-hrnet-modal
  * -------------------------
@@ -35,3 +37,48 @@
  *
  * L'objectif est de fournir un modal propre, simple et moderne pour HRnet.
  */
+export default function Modal({ isOpen, onClose, title, children }) {
+  if (!isOpen) return null;
+
+  // Gestion de la touche Escape + blocage du scroll arrière-plan
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [onClose]);
+
+  // Fermer en cliquant sur l’overlay
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  return (
+    <div className="hrnet-modal-overlay" onClick={handleOverlayClick}>
+      <div className="hrnet-modal">
+        <button
+          type="button"
+          className="hrnet-modal__close-button"
+          aria-label="Close modal"
+          onClick={onClose}
+        >
+          ×
+        </button>
+
+        {title && <h3 className="hrnet-modal__title">{title}</h3>}
+
+        <div className="hrnet-modal__body">{children}</div>
+      </div>
+    </div>
+  );
+}
