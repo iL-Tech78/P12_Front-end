@@ -159,9 +159,14 @@ export default function CreateEmployee() {
         </form>
       </section>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        Employee Created!
-      </Modal>
+      <Modal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      overlayClassName="red-overlay"
+    >
+      Employee Created!
+    </Modal>
+
     </main>
   );
 }

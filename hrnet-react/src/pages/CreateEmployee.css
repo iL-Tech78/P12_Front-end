@@ -133,3 +133,6 @@
     grid-template-columns: 1fr;
   }
 }
+.red-overlay {
+  background-color: red !important;
+}
